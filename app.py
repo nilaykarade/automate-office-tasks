@@ -38,9 +38,17 @@ def daterange(date1, date2):
 
 @app.route('/download')
 def downloadFile ():
+    from datetime import date, timedelta,datetime
+
     
-    start_dt = date(2022, 6, 1)
-    end_dt = date(2022, 6, 30)
+    c_day = date.today()
+    first_date = datetime(c_day.year, c_day.month, 1)
+    last_date = datetime(c_day.year, c_day.month + 1, 1) + timedelta(days=-1)
+        
+    start_dt = date(first_date.year,first_date.month,first_date.day)
+    print(start_dt)
+    end_dt = date(last_date.year,last_date.month,last_date.day)
+    print(end_dt)
     lst=list()
     for dt in daterange(start_dt, end_dt):
         if dt.strftime("%A")!="Sunday":
